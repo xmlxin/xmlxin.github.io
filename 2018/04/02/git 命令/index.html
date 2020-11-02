@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>git命令 | Hexo</title><meta name="keywords" content="git"><meta name="author" content="xiaoxin"><meta name="copyright" content="xiaoxin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="以下只是常用的git操作命令，不涉及概念和理论知识，如果你有需要可以访问廖雪峰git官网 在git命令行获取文件md5、sha1值： md5sum  filename  sha1num  filename 第一次安装git需要配置用户和邮箱 git config --global user.name &quot;Your Name&quot;  git config --global user.e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令">
+<meta property="og:url" content="http://example.com/2018/04/02/git%20%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="以下只是常用的git操作命令，不涉及概念和理论知识，如果你有需要可以访问廖雪峰git官网 在git命令行获取文件md5、sha1值： md5sum  filename  sha1num  filename 第一次安装git需要配置用户和邮箱 git config --global user.name &quot;Your Name&quot;  git config --global user.e">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2018-04-02T08:50:00.000Z">
+<meta property="article:modified_time" content="2018-06-15T06:16:21.368Z">
+<meta property="article:author" content="xiaoxin">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2018/04/02/git%20%E5%91%BD%E4%BB%A4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2018-06-15 14:16:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/%E6%96%87%E7%AB%A0/"><div class="headline">Articles</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/%E6%A0%87%E7%AD%BE/"><div class="headline">Tags</div><div class="length-num">9</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">git命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2018-04-02T08:50:00.000Z" title="Created 2018-04-02 16:50:00">2018-04-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2018-06-15T06:16:21.368Z" title="Updated 2018-06-15 14:16:21">2018-06-15</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>以下只是常用的git操作命令，不涉及概念和理论知识，如果你有需要可以访问<br><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰git官网</a></p>
+<p>在git命令行获取文件md5、sha1值：</p>
+<pre><code>md5sum  filename
+
+sha1num  filename</code></pre>
+<p>第一次安装git需要配置用户和邮箱</p>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+
+git config --global user.email &quot;email@example.com&quot;</code></pre>
+<p>初始化仓库</p>
+<pre><code>git init</code></pre>
+<p>添加忽略文件</p>
+<pre><code>在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去</code></pre>
+<p>参考:<a target="_blank" rel="noopener" href="https://github.com/github/gitignore">https://github.com/github/gitignore</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2508602-9de84a993daa0812.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="忽略文件.png"></p>
+<p>添加远程仓库</p>
+<pre><code>git remote add origin &quot;仓库地址&quot; 添加远程仓库
+
+git push -fu origin master  往远程仓库提交
+
+git remote origin set-url [url] 修改远程仓库</code></pre>
+<p>add代码</p>
+<pre><code>git add-A 把所有文件修改添加到暂存区
+
+git add &quot;文件全路径名&quot; 添加一个文件</code></pre>
+<p>提交代码</p>
+<pre><code>git commit -m &quot;提交信息&quot; 只提交暂存区的文件,实际上就是把暂存区的所有内容提交到当前分支
+
+上面两步就是：需要提交的文件修改通通先放到暂存区，然后在commit，提交暂存区的文件到分
+支，但是还没有提交到远端。一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的。Git管理的是修
+改，而不是文件每次修改，如果不 add 到暂存区，那就不会加入到 commit 中。</code></pre>
+<p>撤销修改：</p>
+<pre><code>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命
+令 git checkout -- file 。
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时(git add)，想丢弃修改，分两步，第一
+步用命令 git reset HEAD file ，就回到了场景1，第二步按场景1操作。
+场景3：已经提交了不合适的修改到版本库时(就是git commit后)，想要撤销本次提交，
+git reset --hard HEAD^或者commit_id，不过前提是没有推送到远程库。</code></pre>
+<p>编辑修改过的文件</p>
+<pre><code>vi xiaoxin.txt 如果没有xiaoxin.txt文件就会先创建这个文件并打开，有就打开xiaoxin这个文件，录入i进
+入编辑模式，按esc退出编辑模式，回到命令模式,在按“shift：wq”保存并退出</code></pre>
+<p>删除文件</p>
+<pre><code>rm xiaoxin.txt</code></pre>
+<p>恢复删除的文件</p>
+<pre><code>git checkout -- xiaoxin.txt</code></pre>
+<p>查看状态</p>
+<pre><code>git status</code></pre>
+<p>查看提交记录</p>
+<pre><code>git log
+
+git log - -pretty=oneline  查看提交记录</code></pre>
+<p>版本回退</p>
+<pre><code>git reset --hard HEAD^或者commit_id ，HEAD表示当前版本，上一个版本是HEAD^,上上是HEAD^^,简写形式HEAD~2
+
+git reset -hard 16b1c3778e744062e2ff1f792e4a90aa28efb40c 在回退回去
+
+git reflog 查看所有提交记录</code></pre>
+<p>创建并切换分支</p>
+<pre><code>git checkout -b cart  等价于：git branch cart , git checkout cart</code></pre>
+<p>切换分支</p>
+<pre><code>git checkout  cart</code></pre>
+<p>查看分支</p>
+<pre><code>git branch</code></pre>
+<p>切换分支</p>
+<pre><code>git checkout &quot;分支名&quot;</code></pre>
+<p>删除分支</p>
+<pre><code>git branch -d dev</code></pre>
+<p>合并分支</p>
+<pre><code>git merge &quot;分支名&quot;</code></pre>
+<p>往远程仓库提交</p>
+<pre><code> git push -fu origin &quot;分支名&quot;&amp;nbsp;</code></pre>
+<p>同步</p>
+<pre><code> git pull origin &quot;分支名&quot;</code></pre>
+<p>所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xiaoxin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2018/04/02/git%20%E5%91%BD%E4%BB%A4/">http://example.com/2018/04/02/git%20%E5%91%BD%E4%BB%A4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/%E6%A0%87%E7%AD%BE/git/">git</a></div><div class="post_share"><div class="social-share" data-image="/null" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2018/04/12/%E6%8E%A2%E7%B4%A2%E5%BE%AE%E4%BF%A1%E6%95%B0%E6%8D%AE%E5%BA%93/"><img class="prev-cover" src="/" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">探索微信数据库</div></div></a></div><div class="next-post pull-right"><a href="/2018/04/02/odex%E8%BD%ACdex/"><img class="next-cover" src="/" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">odex转dex</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">xiaoxin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/%E6%96%87%E7%AB%A0/"><div class="headline">Articles</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/%E6%A0%87%E7%AD%BE/"><div class="headline">Tags</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2020/11/02/%E6%A1%88%E4%BE%8B/goWebSocket/" title="No title">No title</a><time datetime="2020-11-02T09:11:53.103Z" title="Created 2020-11-02 17:11:53">2020-11-02</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/07/08/android%E5%BC%80%E6%BA%90UI%E5%BA%93/" title="开源库">开源库</a><time datetime="2019-07-08T03:28:00.000Z" title="Created 2019-07-08 11:28:00">2019-07-08</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/06/08/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" title="express框架使用">express框架使用</a><time datetime="2019-06-08T12:41:00.000Z" title="Created 2019-06-08 20:41:00">2019-06-08</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/06/06/mongodb/" title="node mongoose 使用">node mongoose 使用</a><time datetime="2019-06-06T14:08:00.000Z" title="Created 2019-06-06 22:08:00">2019-06-06</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/06/04/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" title="nodejs fs文件读写使用">nodejs fs文件读写使用</a><time datetime="2019-06-04T14:05:00.000Z" title="Created 2019-06-04 22:05:00">2019-06-04</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By xiaoxin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

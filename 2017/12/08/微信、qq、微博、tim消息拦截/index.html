@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>微信、qq消息拦截 | Hexo</title><meta name="keywords" content="辅助功能"><meta name="author" content="xiaoxin"><meta name="copyright" content="xiaoxin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="第一版是采用的动态悬浮窗遮罩发送按钮实现，这个方案适配和维护起来很麻烦，特做了下面的修改 十句代码搞定消息拦截(微信、qq、微博、tim等等啦)废话不多说直接上代码 if (!&quot;&quot;.equals(event.getText().toString()) &amp;&amp; event.getText().toString() !&#x3D; null) &amp;#123;     for (S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信、qq消息拦截">
+<meta property="og:url" content="http://example.com/2017/12/08/%E5%BE%AE%E4%BF%A1%E3%80%81qq%E3%80%81%E5%BE%AE%E5%8D%9A%E3%80%81tim%E6%B6%88%E6%81%AF%E6%8B%A6%E6%88%AA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一版是采用的动态悬浮窗遮罩发送按钮实现，这个方案适配和维护起来很麻烦，特做了下面的修改 十句代码搞定消息拦截(微信、qq、微博、tim等等啦)废话不多说直接上代码 if (!&quot;&quot;.equals(event.getText().toString()) &amp;&amp; event.getText().toString() !&#x3D; null) &amp;#123;     for (S">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2017-12-08T09:03:00.000Z">
+<meta property="article:modified_time" content="2018-06-15T06:47:43.535Z">
+<meta property="article:author" content="xiaoxin">
+<meta property="article:tag" content="辅助功能">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2017/12/08/%E5%BE%AE%E4%BF%A1%E3%80%81qq%E3%80%81%E5%BE%AE%E5%8D%9A%E3%80%81tim%E6%B6%88%E6%81%AF%E6%8B%A6%E6%88%AA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2018-06-15 14:47:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/%E6%96%87%E7%AB%A0/"><div class="headline">Articles</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/%E6%A0%87%E7%AD%BE/"><div class="headline">Tags</div><div class="length-num">9</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">微信、qq消息拦截</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2017-12-08T09:03:00.000Z" title="Created 2017-12-08 17:03:00">2017-12-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2018-06-15T06:47:43.535Z" title="Updated 2018-06-15 14:47:43">2018-06-15</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>第一版是采用的动态悬浮窗遮罩发送按钮实现，这个方案适配和维护起来很麻烦，特做了下面的修改</p>
+<p>十句代码搞定消息拦截(微信、qq、微博、tim等等啦)<br>废话不多说直接上代码</p>
+<pre><code>if (!&quot;&quot;.equals(event.getText().toString()) &amp;&amp; event.getText().toString() != null) &#123;
+    for (String str : keyWordList) &#123;
+        if (event.getText().toString().contains(str)) &#123;
+            AccessibilityNodeInfo accessibilityNodeInfo = getRootInActiveWindow();
+            if (accessibilityNodeInfo == null) &#123;
+                return;
+            &#125;
+            Toast.makeText(this,&quot;注意你的言语&quot;,Toast.LENGTH_LONG).show();
+            List&lt;AccessibilityNodeInfo&gt; editNodeInfo = accessibilityNodeInfo.findAccessibilityNodeInfosByText(str);
+            if (editNodeInfo != null &amp;&amp; editNodeInfo.size()&gt;=0) &#123;
+                Bundle arguments = new Bundle();
+                arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, &quot; &quot;);
+                editNodeInfo.get(0).performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/xmlxin/InterceptChat">Demo:githup</a><br><a target="_blank" rel="noopener" href="https://github.com/xmlxin/ReplyMessage">这个你可能更感兴趣</a></p>
+<p>对于微信的自定义view获取不到文本内容暂时一种方案是发送长按事件，激活复制读取粘贴板内容，这种方案并不太好，不过想不到其它方法了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xiaoxin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2017/12/08/%E5%BE%AE%E4%BF%A1%E3%80%81qq%E3%80%81%E5%BE%AE%E5%8D%9A%E3%80%81tim%E6%B6%88%E6%81%AF%E6%8B%A6%E6%88%AA/">http://example.com/2017/12/08/%E5%BE%AE%E4%BF%A1%E3%80%81qq%E3%80%81%E5%BE%AE%E5%8D%9A%E3%80%81tim%E6%B6%88%E6%81%AF%E6%8B%A6%E6%88%AA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/%E6%A0%87%E7%AD%BE/%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD/">辅助功能</a></div><div class="post_share"><div class="social-share" data-image="/null" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/12/10/Android%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E4%BF%A1%E6%81%AF/"><img class="prev-cover" src="/" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Android读取图片信息</div></div></a></div><div class="next-post pull-right"><a href="/2017/11/30/apktool%E5%9B%9E%E7%BC%96%E8%AF%91%E5%A4%B1%E8%B4%A5/"><img class="next-cover" src="/" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">apktool回编译失败</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2018/05/24/微信插件/" title="微信自动翻译插件"><img class="cover" src="/" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-05-24</div><div class="title">微信自动翻译插件</div></div></a></div><div><a href="/2018/05/02/解除发送微信发送图片9张限制并添加水印效果/" title="解除发送微信发送图片9张限制并添加水印效果"><img class="cover" src="/" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-05-02</div><div class="title">解除发送微信发送图片9张限制并添加水印效果</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">xiaoxin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/%E6%96%87%E7%AB%A0/"><div class="headline">Articles</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/%E6%A0%87%E7%AD%BE/"><div class="headline">Tags</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2020/11/02/%E6%A1%88%E4%BE%8B/goWebSocket/" title="No title">No title</a><time datetime="2020-11-02T09:11:53.103Z" title="Created 2020-11-02 17:11:53">2020-11-02</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/07/08/android%E5%BC%80%E6%BA%90UI%E5%BA%93/" title="开源库">开源库</a><time datetime="2019-07-08T03:28:00.000Z" title="Created 2019-07-08 11:28:00">2019-07-08</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/06/08/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" title="express框架使用">express框架使用</a><time datetime="2019-06-08T12:41:00.000Z" title="Created 2019-06-08 20:41:00">2019-06-08</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/06/06/mongodb/" title="node mongoose 使用">node mongoose 使用</a><time datetime="2019-06-06T14:08:00.000Z" title="Created 2019-06-06 22:08:00">2019-06-06</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2019/06/04/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" title="nodejs fs文件读写使用">nodejs fs文件读写使用</a><time datetime="2019-06-04T14:05:00.000Z" title="Created 2019-06-04 22:05:00">2019-06-04</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By xiaoxin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
